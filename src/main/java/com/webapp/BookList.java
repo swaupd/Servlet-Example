@@ -32,7 +32,8 @@ public class BookList extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         out.println("<!DOCTYPE html>");
-        out.println("<html><head><meta charset=\"UTF-8\"><title>Book List</title></head><body>");
+        out.println("<html><head><meta charset=\"UTF-8\"><title>Book List</title><link rel='stylesheet' href='styles/styles.css'></head><body>");
+        out.println("<div class='container'>");
         out.println("<h1>Book List</h1>");
         out.println("<table border='1'>");
         out.println("<tr><th>ID</th><th>Title</th><th>Price</th></tr>");
@@ -47,6 +48,7 @@ public class BookList extends HttpServlet {
 
         out.println("</table>");
         out.println("<br><a href='home.jsp'>Back to Home</a>");
+        out.println("</div>");
         out.println("</body></html>");
     }
 }
