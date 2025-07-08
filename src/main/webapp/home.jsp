@@ -12,7 +12,9 @@
 <head><title>Home</title></head>
 <body>
     <h1>Welcome <%= name %></h1>
-    <a href="add.html">Add Book</a>
+    <a href="add.jsp">Add Book</a>
+    <br>
+    <a href="update.jsp">Update Book</a>
     <br>
     <a href="/mywebapp/books">View Books</a>
     <br>

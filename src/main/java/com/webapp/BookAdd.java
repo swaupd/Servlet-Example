@@ -26,7 +26,10 @@ public class BookAdd extends HttpServlet {
             stmt.close();
 
             // On success, redirect to success.html
-            response.sendRedirect("success.html");
+                HttpSession session = request.getSession();
+                session.setAttribute("successTitle", "Book Added Successfully");
+                session.setAttribute("successMessage", "Book with Name " + bookName + " has been added.");
+                response.sendRedirect("success.jsp");
 
         } catch (SQLException e) {
             e.printStackTrace();

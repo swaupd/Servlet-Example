@@ -6,15 +6,21 @@
         response.sendRedirect("login.html");
         return;
     }
+    String successTitle = (String) session.getAttribute("successTitle");
+    String successMessage = (String) session.getAttribute("successMessage");
+    if (successTitle == null) {
+        successTitle = "Success";
+        successMessage = "Operation completed successfully.";
+    }
 %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Book Added</title>
+    <title><%= successTitle %></title>
 </head>
 <body>
-    <h1>✅ Book added successfully!</h1>
+    <h1><%= successMessage %></h1>
     <a href="home.jsp">Go home</a>
 </body>
 </html>
