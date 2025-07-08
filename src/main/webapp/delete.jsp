@@ -12,21 +12,14 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Library - Update Book</title>
+    <title>Library - Delete Book</title>
 </head>
 <body>
     <h1>Update Book</h1>
-    <form action="updateBook" method="post">
+    <form action="deleteBook" method="post">
         <label for="id">Book ID:</label>
         <input type="text" id="id" name="id" required><br><br>
-
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price"><br><br>
-
-        <input type="submit" value="Update Book">
+        <input type="submit" value="Delete Book">
     </form>
 </body>
 </html>

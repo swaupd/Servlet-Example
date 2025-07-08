@@ -16,7 +16,9 @@
     <br>
     <a href="update.jsp">Update Book</a>
     <br>
-    <a href="/mywebapp/books">View Books</a>
+    <a href="delete.jsp">Delete Book</a>
+    <br>
+    <a href="books">View Books</a>
     <br>
     <form method="post" action="/mywebapp/logout">
         <input type="submit" value="Logout">

@@ -16,7 +16,7 @@
 </head>
 <body>
     <h1>Add Book</h1>
-    <form action="/mywebapp/addBook" method="post">
+    <form action="addBook" method="post">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
