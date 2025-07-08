@@ -1,0 +1,137 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 40px 20px;
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  text-align: center;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin: 15px 20% 15px;
+  font-weight: bold;
+  color: #444;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+  width: 60%;
+  padding: 10px;
+  margin-top: 5px;
+    display: block;
+    margin: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+a {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+input[type="submit"] {
+  width: 60%;
+  background-color: #007bff;
+    display: block;
+  color: white;
+  padding: 12px;
+  margin-top: 20px;
+    margin: auto;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+button {
+  width: 60%;
+  padding: 12px 18px;
+  margin: 16px auto;
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+/* Add Book - vibrant green with soft shadow */
+.btn-add {
+  background: linear-gradient(135deg, #4caf50, #81c784);
+  color: white;
+}
+.btn-add:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+/* Update Book - sleek indigo/blue gradient */
+.btn-update {
+  background: linear-gradient(135deg, #3f51b5, #7986cb);
+  color: white;
+}
+.btn-update:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+/* Delete Book - flat style with red outline */
+.btn-delete {
+  background: white;
+  color: #e53935;
+  border: 2px solid #e53935;
+}
+.btn-delete:hover {
+  background-color: #e53935;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* View Books - minimal soft gray-blue */
+.btn-view {
+  background-color: #f0f4f8;
+  color: #37474f;
+  border: 1px solid #cfd8dc;
+}
+.btn-view:hover {
+  background-color: #e0e7ef;
+  transform: translateY(-2px);
+}
+
+/* Logout - dark with elegant gradient */
+.btn-logout {
+  background: linear-gradient(135deg, #b71c1c, #d32f2f);
+  color: white;
+}
+.btn-logout:hover {
+  filter: brightness(1.05);
+  transform: translateY(-2px);
+}
