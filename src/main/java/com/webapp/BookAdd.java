@@ -1,5 +1,6 @@
 package com.webapp;
 
+import com.util.BookDAL;
 import com.util.DBUtil;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,25 +17,21 @@ public class BookAdd extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
-        String bookName = request.getParameter("name");
-        String price = request.getParameter("price");
-
         try {
-            Statement stmt = DBUtil.getConnection().createStatement();
-            String sql = "INSERT INTO books (name, price) VALUES ('" + bookName + "', " + price + ")";
-            stmt.executeUpdate(sql);
-            stmt.close();
+            
+        String bookName = request.getParameter("name");
+        float price = (float) (Float.parseFloat(request.getParameter("price")) * 100.0f) / 100.0f;
 
+        if (BookDAL.addBook(bookName, price)) {
             // On success, redirect to success.html
                 HttpSession session = request.getSession();
                 session.setAttribute("successTitle", "Book Added Successfully");
                 session.setAttribute("successMessage", "Book with Name " + bookName + " has been added.");
                 response.sendRedirect("success.jsp");
-
+        }
         } catch (SQLException e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Error adding book: " + e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
+
     }
 }

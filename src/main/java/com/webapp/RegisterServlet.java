@@ -1,5 +1,6 @@
 package com.webapp;
 
+import com.util.AdminDAL;
 import com.util.DBUtil;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -20,24 +21,9 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
 
         try (Connection conn = DBUtil.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement(
-                "INSERT INTO admins (first_name, middle_name, last_Name, email, password) VALUES (?, ?, ?, ?, ?)"
-            );
-            stmt.setString(1, firstName);
-            stmt.setString(2, middleName);
-            stmt.setString(3, lastName);
-            stmt.setString(4, email);
-            stmt.setString(5, password);
-            int rowsAffected = stmt.executeUpdate();
-            CallableStatement cs = conn.prepareCall("CALL fullName(?)");
-            cs.setString(1, email);
-            ResultSet rsName = cs.executeQuery();
-            String fullName = null;
-            if (rsName.next()) {
-                fullName = rsName.getString(1);
-            }
 
-            if (rowsAffected > 0 && fullName != null) {
+            if (AdminDAL.registerAdmin(firstName, middleName, lastName, email, password)) {
+                String fullName = AdminDAL.getFullName(email);
                 HttpSession session = req.getSession();
                 session.setAttribute("adminEmail", email);
                 session.setAttribute("adminName", fullName);

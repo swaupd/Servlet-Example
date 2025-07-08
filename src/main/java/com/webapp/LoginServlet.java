@@ -1,5 +1,6 @@
 package com.webapp;
 
+import com.util.AdminDAL;
 import com.util.DBUtil;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -16,22 +17,10 @@ public class LoginServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        try (Connection conn = DBUtil.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM admins WHERE email = ? AND password = ?"
-            );
-            stmt.setString(1, email);
-            stmt.setString(2, password);
-            ResultSet rs = stmt.executeQuery();
-            CallableStatement cs = conn.prepareCall("CALL fullName(?)");
-            cs.setString(1, email);
-            ResultSet rsName = cs.executeQuery();
-            String fullName = null;
-            if (rsName.next()) {
-                fullName = rsName.getString(1);
-            }
+        try {
 
-            if (rs.next()) {
+            if (AdminDAL.loginAdmin(email, password)) {
+                String fullName = AdminDAL.getFullName(email);
                 HttpSession session = req.getSession();
                 session.setAttribute("adminEmail", email);
                 session.setAttribute("adminName", fullName);

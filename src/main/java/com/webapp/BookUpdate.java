@@ -1,5 +1,6 @@
 package com.webapp;
 
+import com.util.BookDAL;
 import com.util.DBUtil;
 
 import javax.servlet.ServletException;
@@ -18,8 +19,7 @@ public class BookUpdate extends HttpServlet {
         throws ServletException, IOException {
 
 
-        try (Connection conn = DBUtil.getConnection();
-            CallableStatement cstmt = conn.prepareCall("{call updateBook(?, ?, ?)}")) {
+        try {
             int bookId = Integer.parseInt(request.getParameter("id"));
             String name = request.getParameter("name");
             if (name == null || name.isEmpty()) {
@@ -29,11 +29,8 @@ public class BookUpdate extends HttpServlet {
             if (!request.getParameter("price").isEmpty()) {
                 price = (float)Math.round(Float.parseFloat(request.getParameter("price")) * 100.0f) / 100.0f;
             }
-            cstmt.setInt(1, bookId);
-            cstmt.setString(2, name);
-            cstmt.setFloat(3, price);
 
-            if (cstmt.executeUpdate() > 0) {
+            if (BookDAL.updateBook(bookId, name, price)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("successTitle", "Book Updated Successfully");
                 session.setAttribute("successMessage", "Book with ID " + bookId + " has been updated.");

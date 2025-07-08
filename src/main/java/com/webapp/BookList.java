@@ -1,6 +1,7 @@
 package com.webapp;
 
 import com.util.Book;
+import com.util.BookDAL;
 import com.util.DBUtil;
 
 import javax.servlet.ServletException;
@@ -17,19 +18,11 @@ public class BookList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
+        List<Book> bookList;
+        try {
 
-        List<Book> bookList = new ArrayList<>();
+            bookList = BookDAL.displayBooks();
 
-        try (Connection conn = DBUtil.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT * FROM books")) {
-
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String title = rs.getString("name");
-                float price = rs.getFloat("price");
-                bookList.add(new Book(id, title, price));
-            }
 
         } catch (SQLException e) {
             throw new ServletException("Database error: " + e.getMessage(), e);

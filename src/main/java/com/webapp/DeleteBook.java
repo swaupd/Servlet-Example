@@ -1,5 +1,6 @@
 package com.webapp;
 
+import com.util.BookDAL;
 import com.util.DBUtil;
 
 import javax.servlet.ServletException;
@@ -18,13 +19,11 @@ public class DeleteBook extends HttpServlet {
         throws ServletException, IOException {
 
 
-        try (Connection conn = DBUtil.getConnection();
+        try { 
 
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM books WHERE id = ?")) {
             int bookId = Integer.parseInt(request.getParameter("id"));
-            pstmt.setInt(1, bookId);
 
-            if (pstmt.executeUpdate() > 0) {
+            if (BookDAL.deleteBook(bookId)) {
                 HttpSession session = request.getSession();
                 session.setAttribute("successTitle", "Book Deleted Successfully");
                 session.setAttribute("successMessage", "Book with ID " + bookId + " has been deleted.");
